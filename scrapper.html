@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Web scrapper | Text Analysis of Securities and Exchange Commission Rules and Comments</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Web scrapper" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="UC Berkeley, School of Law" />
+<meta property="og:description" content="UC Berkeley, School of Law" />
+<link rel="canonical" href="http://localhost:4000/scrapper.html" />
+<meta property="og:url" content="http://localhost:4000/scrapper.html" />
+<meta property="og:site_name" content="Text Analysis of Securities and Exchange Commission Rules and Comments" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Web scrapper" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"UC Berkeley, School of Law","headline":"Web scrapper","url":"http://localhost:4000/scrapper.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Web scrapper</h1>
+      <h2 class="project-tagline">UC Berkeley, School of Law</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <p>The SEC websites have two different parts for <a href="https://www.sec.gov/rules/proposed.shtml">propose</a> and <a href="https://www.sec.gov/rules/final.htm">final rule</a>.<br />
+Each section contains url, rule id, release date, and file number for the rules.<br />
+Due to reformation of site html tags structure across the whole period, scrapper doesn’t work in one single logic. This inconsistency is tackled by few code patterns.</p>
+
+<p><strong>NOTE</strong>: The SEC has renewed their website. Renewed website has different layout than the past website where rules weren’t matched by RIN or file number. The scrapper here won’t be used, and archived. Please check <a href="./newscrapper.html">new scrapper</a>.</p>
+
+<h1 id="download">Download</h1>
+<p>Dependency: <a href="https://pypi.org/project/beautifulsoup4/">Beautifulsoup4 (4.11.1 recommended)</a>, <a href="https://pypi.org/project/pandas/">Pandas</a>,<a href="https://pypi.org/project/requests/">requests</a>.  <br />
+Download: <a href="./code/scrapper/scrapper&amp;macher.ipynb">Link</a></p>
+
+<h1 id="description">Description</h1>
+<ul>
+  <li>
+    <p>The first sectioin is the script is library and module. You can skip the first code chunk(installing beautifulsoup 4.11.1) if you have it already.</p>
+  </li>
+  <li>
+    <p>Scrapper consists of two sections since pre-2013(upto 2012) and post-2012(starting off from 2013) pages differ from the html tags structure.</p>
+
+    <p>One is scrapping code upto 2012. The other is scrapping code for post-2012 pages.</p>
+  </li>
+  <li>
+    <p>Matcher consists of four sections: upto 2012, between 2013 and 2015, from 2016 to 2019, and from 2020 to 2023.</p>
+  </li>
+  <li>
+    <p>For each section of scrapper and matcher, there is a ready-to-use function to be passed on “batch_operation” method. That function is already fitted for the SEC rule pages of each section year, but if you think there is a better way to scrap the pages feel free to edit it.</p>
+  </li>
+  <li>
+    <p>You will have a list of propose rules(a csv file)after running scrapper section. You may want to run matcher to match propose rule with final rule based on file number.</p>
+  </li>
+</ul>
+
+<h1 id="sample--guide">Sample &amp; Guide</h1>
+<p>Following examples are executed on google colab<br />
+<strong>Make sure you have executed the first section(necessary library, function, and module). This guide assumes you have run the section</strong></p>
+
+<p>1.</p>
+
+<p><img src="/assets/scrap1995-2000.png" alt="scrap1995-2000" /><br />
+This is example code for scraping pages of 1995-2000.<br />
+Batchurls is class to simplify repeating codes to scrap multiple pages.
+You can just pass the first argument to note which kind of rule you want(‘P’ for propose rule and ‘F’ for final rule).<br />
+In this case, we want to scrap propose rule first just put ‘P’ for the first argument.<br />
+Then, enter start year and end year you want to scrap. This example uses 1995 for starting year and 2000 for end year to scrap.<br />
+Lastly, don’t modify function f since it’s seted up to capture pages of each section’s year.</p>
+
+<p>2.</p>
+
+<p><img src="/assets/example for csv.png" alt="example for csv" /><br />
+Afrer scrapping, you will have csv something like this.<br />
+Keep this file on the same folder where you run the script(If you are using colab, the csv file will be automatically located in your file tab).</p>
+
+<p>3.</p>
+
+<p><img src="/assets/match1995-2010.png" alt="match1995-2010" /><br />
+Run matcher entered years you want. In this example, I put 1995-2010.<br />
+Also, let the first argument of a Batchurls object to be ‘F’ which means ‘f’inal rule.</p>
+
+<p>4.</p>
+
+<p><img src="/assets/matchcomplete.png" alt="matchcomplete" /><br />
+Now, you get complete csv with matched rules.<br />
+If you want to format csv to have individual rules stored seperately. You can run the attched code at last section(data rigging).</p>
+
+<h1 id="credit">Credit</h1>
+<p>The script is written by Jacob Choe. Feel free to ask question through <a href="mailto:ownssi@berkeley.edu">ownssi@berkeley.edu</a>.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

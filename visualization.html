@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Statistics and visulization | Text Analysis of Securities and Exchange Commission Rules and Comments</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Statistics and visulization" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="UC Berkeley, School of Law" />
+<meta property="og:description" content="UC Berkeley, School of Law" />
+<link rel="canonical" href="http://localhost:4000/visualization.html" />
+<meta property="og:url" content="http://localhost:4000/visualization.html" />
+<meta property="og:site_name" content="Text Analysis of Securities and Exchange Commission Rules and Comments" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Statistics and visulization" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"UC Berkeley, School of Law","headline":"Statistics and visulization","url":"http://localhost:4000/visualization.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Statistics and visulization</h1>
+      <h2 class="project-tagline">UC Berkeley, School of Law</h2>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="analysis">Analysis</h1>
+
+<h2 id="how-long-does-it-take-to-proposed-rule-to-be-finalized">How long does it take to proposed rule to be finalized</h2>
+<p><img src="/assets/visualization/approval_period.png" alt="comment_complex" /></p>
+
+<hr />
+
+<h2 id="complexity-between-finalized-rule-and-not-finalized-rule">Complexity between finalized rule and not finalized rule</h2>
+<p><img src="/assets/visualization/comment_complexity.png" alt="comment_complex" /><br />
+The complexity is calculated by grade scale(from 1st grade to Nth grade) of Flesch Reading Ease score, The Flesch-Kincaid Grade Level, Gunning fog index, SMOG, Automated readability index, The Coleman-Liau Index, Linsear Write Formula, and Dale–Chall readability formula.<br />
+One grade scale of each metric is aggregated. The mode value(most frequent value) was chosen to represent comments complexity of each proposed rule.</p>
+
+<hr />
+
+<h2 id="number-of-comments-across-years">Number of comments across years</h2>
+<p><img src="/assets/visualization/num of comments.png" alt="num_complex" /><br />
+You may notice the number of comments skyrocketed at the onset of recession period(2008).</p>
+
+<hr />
+<h2 id="complexity-of-comments-across-years">Complexity of comments across years</h2>
+<p><img src="/assets/visualization/year_complexity.png" alt="complex_years" /><br />
+Unlike the plot above, it shows spike at the onset of early 2000s recession.<br />
+It may imply that account rule could be complex than back rule.</p>
+
+<hr />
+<h2 id="cosine-similarity-between-proposed-and-final-rule">Cosine Similarity between proposed and final rule</h2>
+<p><img src="/assets/visualization/year_cosim.png" alt="comment_complex" />
+This result is interesting because it proves Jay Clayton(SEC Chairman form 2017 until 2020) preserved the contents of proposed rules without big reformation.</p>
+
+<hr />
+<h2 id="number-of-words-in-proposed-rule-across-years">Number of words in proposed rule across years</h2>
+<p><img src="/assets/visualization/rule_number.png" alt="comment_complex" /><br />
+Just like the plot above, this is also interesting.<br />
+The spike at 2022 shows the SEC published extraordinary great amount of rules or contetns from Gary Gensler tenure(SEC Chairman form 2021).</p>
+
+<hr />
+<h2 id="comments-to-rules-correlation">Comments to rules correlation</h2>
+
+<h3 id="comments-number-and-cosine-simiarity">Comments number and cosine simiarity</h3>
+<p><img src="/assets/visualization/complexity-commenet number.png" alt="comment_complex" /><br />
+The plot shows that the number of comments doesn’t affect simiarity between proposed and final rule.<br />
+Also, according to pearson correlation coefficient, the correlation coefficient is just -0.07 which is not significant at all.</p>
+
+<h3 id="comments-complexity-and-cosine-simiarity">Comments complexity and cosine simiarity</h3>
+<p><img src="/assets/visualization/complexity-commenet number.png" alt="comment_complex" /><br />
+Again, the plot also shows that comments complexity doesn’t affect simiarity between proposed and final rule.<br />
+Also, according to pearson correlation coefficient, the correlation coefficient is just 0.16. It still not enough to prove meaningful correlation.</p>
+<hr />
+<h2 id="is-comments-complexity-and-the-number-of-comments-related">Is comments complexity and the number of comments related?</h2>
+<p>This question might be helpful to understand analysis above because we all tend to mislead ourselve into something complicated is equals somethings a lot. However, Richard Feynman, a theoretical physicist, once said it’s not complicated, it’s many.<br />
+His quote describe which point we are baffled at. The massive amount of comments doesn’t mean that comments are complex to read. The below plot shows evidence.<br />
+<img src="/assets/visualization/Comment_num - complexity.png" alt="comment_complex" /><br />
+As you can see here, those two variable(complexity and the number of comments) are not correlated(pearson correlation coefficient: -0.16).</p>
+
+<hr />
+
+<h1 id="file-csvs-for-graphing">File (CSVs for graphing)</h1>
+
+<p>Comment complexity scores of each rule(complexity scores.csv): <a href="./visualization/complexity scores.csv">Link</a></p>
+
+<p>Matching between proposed and final rule(matching_outer.csv): <a href="./visualization/matching_outer.csv">Link</a></p>
+
+<p>Matching between proposed and final rule(additional column for graphing): <a href="./visualization/for graphing.csv">Link</a></p>
+
+<h1 id="code-used">Code used</h1>
+
+<h2 id="complexity-calculation">Complexity calculation</h2>
+<p>Dependency: <a href="https://pypi.org/project/pandas/">Pandas</a>, <a href="https://pypi.org/project/textstat/">Textstat</a><br />
+Download: <a href="./code/statNvis/comment_complexity.ipynb">Link</a></p>
+
+<h2 id="graphing">Graphing</h2>
+<p>Dependency: <a href="https://pypi.org/project/pandas/">Pandas</a>, <a href="https://pypi.org/project/matplotlib/">Matplotlib</a>, <a href="https://pypi.org/project/seaborn/">Seaborn</a><br />
+Download: <a href="./code/statNvis/Visualization.ipynb">Link</a></p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
